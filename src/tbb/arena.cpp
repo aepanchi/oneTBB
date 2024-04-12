@@ -395,9 +395,11 @@ bool arena::is_top_priority() const {
     return my_is_top_priority.load(std::memory_order_relaxed);
 }
 
-bool arena::try_join() {
+bool arena::try_join(bool should_join) {
     if (num_workers_active() < my_num_workers_allotted.load(std::memory_order_relaxed)) {
-        my_references += arena::ref_worker;
+        if (should_join) {
+            my_references += arena::ref_worker;
+        }
         return true;
     }
     return false;

@@ -385,7 +385,7 @@ public:
 
     bool is_top_priority() const;
 
-    bool try_join();
+    bool try_join(bool should_join);
 
     void set_allotment(unsigned allotment);
 

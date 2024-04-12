@@ -37,8 +37,8 @@ void thread_request_serializer::update(int delta) {
     if (prev_pending_delta == pending_delta_base) {
         delta = int(my_pending_delta.exchange(pending_delta_base) & delta_mask) - int(pending_delta_base);
         mutex_type::scoped_lock lock(my_mutex);
-        my_total_request += delta;
-        delta = limit_delta(delta, my_soft_limit, my_total_request);
+        my_total_request.store(my_total_request.load(std::memory_order_relaxed) + delta, std::memory_order_release);
+        delta = limit_delta(delta, my_soft_limit, my_total_request.load(std::memory_order_relaxed));
         my_thread_dispatcher.adjust_job_count_estimate(delta);
     }
 }
@@ -46,7 +46,7 @@ void thread_request_serializer::update(int delta) {
 void thread_request_serializer::set_active_num_workers(int soft_limit) {
     mutex_type::scoped_lock lock(my_mutex);
     int delta = soft_limit - my_soft_limit;
-    delta = limit_delta(delta, my_total_request, soft_limit);
+    delta = limit_delta(delta, my_total_request.load(std::memory_order_relaxed), soft_limit);
     my_thread_dispatcher.adjust_job_count_estimate(delta);
     my_soft_limit = soft_limit;
 }
@@ -108,6 +108,8 @@ void thread_request_serializer_proxy::set_active_num_workers(int soft_limit) {
         }
     }
 }
+
+int thread_request_serializer_proxy::num_workers_requested() { return my_serializer.num_workers_requested(); }
 
 void thread_request_serializer_proxy::update(int delta) { my_serializer.update(delta); }
 
