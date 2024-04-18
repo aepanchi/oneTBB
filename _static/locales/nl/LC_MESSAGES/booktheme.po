@@ -1,0 +1,75 @@
+
+msgid ""
+msgstr ""
+"Project-Id-Version: Sphinx-Book-Theme\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "By the"
+msgstr "Door de"
+
+msgid "Download notebook file"
+msgstr "Download notebookbestand"
+
+msgid "By"
+msgstr "Door"
+
+msgid "suggest edit"
+msgstr "suggereren bewerken"
+
+msgid "Theme by the"
+msgstr "Thema door de"
+
+msgid "previous page"
+msgstr "vorige pagina"
+
+msgid "Copyright"
+msgstr "auteursrechten"
+
+msgid "Toggle navigation"
+msgstr "Schakel navigatie"
+
+msgid "Last updated on"
+msgstr "Laatst geupdate op"
+
+msgid "Sphinx Book Theme"
+msgstr "Sphinx-boekthema"
+
+msgid "Contents"
+msgstr "Inhoud"
+
+msgid "Launch"
+msgstr "Lancering"
+
+msgid "Download this page"
+msgstr "Download deze pagina"
+
+msgid "open issue"
+msgstr "open probleem"
+
+msgid "Source repository"
+msgstr "Bronopslagplaats"
+
+msgid "next page"
+msgstr "volgende bladzijde"
+
+msgid "Open an issue"
+msgstr "Open een probleem"
+
+msgid "repository"
+msgstr "repository"
+
+msgid "Download source file"
+msgstr "Download het bronbestand"
+
+msgid "Fullscreen mode"
+msgstr "Volledig scherm"
+
+msgid "Print to PDF"
+msgstr "Afdrukken naar pdf"
+
+msgid "Edit this page"
+msgstr "bewerk deze pagina"
