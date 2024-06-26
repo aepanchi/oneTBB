@@ -18,8 +18,12 @@
 This document contains changes of oneTBB compared to the last release.
 
 ## Table of Contents <!-- omit in toc -->
+- [New Features](#new-features)
 - [Known Limitations](#known-limitations)
 - [Fixed Issues](#fixed-issues)
+
+## :tada: New Features
+- Extended the ``parallel_reduce`` and ``parallel_deterministic_reduce`` functional form APIs to better support ``rvalues reduction`` ([GitHub* #1299](https://github.com/oneapi-src/oneTBB/issues/1299)). 
 
 ## :rotating_light: Known Limitations
 - The ``oneapi::tbb::info`` namespace interfaces might unexpectedly change the process affinity mask on Windows* OS systems (see https://github.com/open-mpi/hwloc/issues/366 for details) when using hwloc version lower than 2.5.
@@ -33,10 +37,15 @@ This document contains changes of oneTBB compared to the last release.
 
 
 ## :hammer: Fixed Issues
-- Fixed ``parallel_for_each`` algorithm behavior for iterators defining ``iterator_concept`` trait instead of ``iterator_category``.
-- Fixed the redefinition issue for ``std::min`` and ``std::max`` on Windows* OS ([GitHub* #832](https://github.com/oneapi-src/oneTBB/issues/832)).
-- Fixed the incorrect binary search order in ``TBBConfig.cmake``.
-- Enabled the oneTBB library search using the pkg-config tool in Conda packages.
-
-## :octocat: Open-source Contributions Integrated
-- Fixed the compiler warning for missing virtual destructor. Contributed by Elias Engelbert Plank (https://github.com/oneapi-src/oneTBB/pull/1215).
+- Improved security by excluding CWD from a search for load-time dependencies.
+- Improved performance:
+  - On Apple* platforms by aligning block-time behavior with other OSs.
+  - On non-hybrid CPU hardware by reworking block-time behavior.
+  - On ARM64* platforms by fixing backoff behavior for spin loops.
+  - When constrained APIs are used on a server CPU HW with multiple NUMA nodes.
+- Improved WASM support by fixing a segmentation fault if global ``tbb::task_scheduler_observer`` is used. ([GitHub* #1341](https://github.com/oneapi-src/oneTBB/issues/1341)). 
+- Fixed CMake skipping library compilation when using FetchContent with ``OVERRIDE_FIND_PACKAGE`` ([GitHub* #1323](https://github.com/oneapi-src/oneTBB/issues/1323)). 
+- Improved support for Bazel version 7.1.1. 
+- Added Apple* frameworks support to build iOS-compatible application bundles ([GitHub* #1252](https://github.com/oneapi-src/oneTBB/issues/1252)). 
+- Fixed the huge page size for LoongArch64* architecture. 
+- Fixed oneTBB build with MinGW* and GCC* 13.2 ([GitHub* #1314](https://github.com/oneapi-src/oneTBB/issues/1314)). 
